@@ -1,0 +1,41 @@
+
+
+
+
+//You are given an array of unique integers salary where salary[i] is the salary of the ith employee.
+
+//Return the average salary of employees excluding the minimum and maximum salary. 
+
+
+/**
+ * @param {number[]} salary
+ * @return {number}
+ */
+var average = function(salary) {
+    var totalNum = salary.length;
+    var sortSalary = salary.sort();
+
+    var removeMinMax	= sortSalary.slice(1,-1);
+
+    if (removeMinMax.length==0) {
+    //find median of min & max
+    return salary.reverse()[0]-salary.sort()[0];
+    }
+    else if (removeMinMax.length==1) {
+    //output the removeMinMax
+    return removeMinMax[0];
+    }
+    else if (removeMinMax.length%2==0){
+    //add all nums in array and / 2
+    var sum = 0;
+    for (var i=0; i<removeMinMax.length; i++) {
+        sum+=removeMinMax[i];
+    }
+    return sum/2;
+    }
+    else if (removeMinMax.length%2!==0) {
+    //find the middle number
+    var mid =  Math.round(removeMinMax.length/2);
+    return removeMinMax[mid-1];
+    } 
+};
